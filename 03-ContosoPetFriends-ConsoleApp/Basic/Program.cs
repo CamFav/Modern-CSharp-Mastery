@@ -226,7 +226,7 @@ do
                         animalAge = readResult;
                         if (animalAge != "?")
                         {
-                            validEntry = int.TryParse(animalAge, out petAge);
+                            validEntry = int.TryParse(animalAge, out petAge) && petAge > 0;
                         }
                         else
                         {
@@ -350,7 +350,7 @@ do
                         readResult = Console.ReadLine();
 
                         string input = readResult?.Trim() ?? "";
-                        validEntry = int.TryParse(input, out parsedAge);
+                        validEntry = int.TryParse(input, out parsedAge) && parsedAge > 0;
 
                         if (validEntry)
                         {
@@ -414,7 +414,7 @@ do
                 bool nicknameValid =
                    !string.IsNullOrWhiteSpace(petNickname) &&
                    !petNickname.Contains('\0') &&
-                   !petNickname.Equals("tbd");
+                   !petNickname.Equals("tbd", StringComparison.OrdinalIgnoreCase);
 
                 if (!nicknameValid)
                 {
@@ -427,7 +427,7 @@ do
                         validEntry =
                             !string.IsNullOrWhiteSpace(input) &&
                             !input.Contains('\0') &&
-                            !input.Equals("tbd");
+                            !input.Equals("tbd", StringComparison.OrdinalIgnoreCase);
 
                         if (validEntry)
                         {
@@ -631,6 +631,7 @@ do
                         {
                             Console.WriteLine(ourAnimals[i, j]);
                         }
+                        anyMatch = true;
                     }
                 }
 
@@ -695,6 +696,7 @@ do
                         {
                             Console.WriteLine(ourAnimals[i, j]);
                         }
+                        anyMatch = true;
                     }
                 }
 
